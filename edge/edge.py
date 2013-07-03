@@ -1,10 +1,9 @@
 # coding:utf-8
 
 import sys
+import cv
 import cv2
 import numpy as np
-
-
 
 # 画像読み込み
 try:
@@ -13,7 +12,13 @@ except:
 	filename = 'lena.png'
 
 im = cv2.imread(filename)
-im = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
+
+#		グレースケール
+# im = cv2.cvtColor(im, cv2.COLOR_BGR2GRAY)
+
+#HSV
+im = cv2.cvtColor(im,cv.CV_HSV2RGB)
+
 height,width = im.shape[:2]
 
 # 塗りつぶし
@@ -30,8 +35,5 @@ try:
 	write_name = sys.argv[2]
 except:
 	write_name = 'result.png'
-
-
-
 cv2.imwrite(write_name,im)
 
